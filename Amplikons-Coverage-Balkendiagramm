@@ -1,0 +1,89 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
+Gene = ["EGFR01", "EGFR02", "EGFR03", "ATRX01", "ATRX02", "ATRX03", "H3F3A01", "H3F3A02", "TP5301", "TP5302", "TP5303", "IDH1", "IDH2", "PTEN01", "PTEN02", "BRAF", "PIK3CA01", "PIK3CA02", "TERT01"]
+Coverage_Wert=[]
+
+#ax1 = plt.subplot(211)
+#ax2 = plt.subplot(212)
+
+
+with open("../Gliom/Gliom-Amplikons/Gliom_04-Amplikons.bed") as f:
+	for line in f:
+		#print(line)
+		#print(line.split("\t"))
+		
+		splits = line.split("\t")
+		
+		#print(splits[0])
+		
+		try:
+			Chromosom =splits[0]
+			Start =int(splits[1])
+			Ende=int(splits[2])
+			Basen=float(splits[3])
+
+			length = Ende - Start
+			
+			if length != 0:
+				Coverage=Basen/length
+			if length == 0:
+				Coverage= 0
+				
+			Coverage_Wert.append(Coverage)
+		
+		#	print(Coverage)
+			
+			#absStart=ChromosomeMetrics.GetAbsolutePosition(Chromosom, Start)
+			#absStop=ChromosomeMetrics.GetAbsolutePosition(Chromosom, Ende)
+		#	print(absStart)
+		#	print(absStop)
+		
+							
+			
+				
+		except ValueError:
+		#	print(line)
+			break
+				
+
+
+
+colors1 = []
+for value in Coverage_Wert: # keys are the names of the boys
+    if float(value) >= 150:
+        colors1.append('g')
+    else:
+        colors1.append('r')
+
+
+
+			
+
+plt.bar(Gene, Coverage_Wert, color=colors1, width=0.25)
+#ax2.bar(Gene, Coverage_Wert2, color=colors, width=0.25)
+
+plt.xlabel("Amplikons")
+plt.ylabel("Coverage")
+plt.title("Coverage-Amplikons")
+plt.yscale("log")
+#ax1.set_ylim(0, 250)
+
+#ax2.set_xlabel("Amplikons")
+#ax2.set_ylabel("Coverage")
+
+#ax2.set_ylim(0, 250)
+
+
+
+				
+#else:
+#	plt.bar(Gene, Coverage_Wert, color="r", width=0.25)
+
+plt.xticks([i + 0.25 for i in range(20)],Gene)
+
+#plt.ylabel("Coverage")
+#plt.ylim(0, 250)
+#plt.xlabel("Amplikons")
+
+plt.show()
