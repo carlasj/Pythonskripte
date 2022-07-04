@@ -1,0 +1,50 @@
+import os
+
+
+def CTCL_Genom (fastq_datei, sample_name):
+	#os.system("cat " + fastq_datei +"*.fastq.gz > /vol/mf-tumor/" + sample_name +".fastq.gz")
+	#os.system("/vol/mf-tumor/tools/Porechop/./porechop-runner.py -i /vol/mf-tumor/" + sample_name + ".fastq.gz -o /vol/mf-tumor/" + sample_name + "-porechop.fastq.gz")
+	#os.system("minimap2 -a -x map-ont -t 16 -Y --MD /vol/mf-tumor/GCA_009914755.4_CHM13_T2T_v2.0_genomic.fna/T2T.fna /vol/mf-tumor/" + sample_name + "-porechop.fastq.gz > /vol/mf-tumor/Mappings/T2T-" + sample_name + ".sam")
+	#os.system("samtools sort -@ 16 /vol/mf-tumor/Mappings/T2T-" + sample_name +".sam -o /vol/mf-tumor/Mappings/T2T-" + sample_name + "-sort.sam")
+	#os.system("samtools view -bh -@ 16 /vol/mf-tumor/Mappings/T2T-" + sample_name + "-sort.sam -o /vol/mf-tumor/WGS_Test_Mapping/T2T-" + sample_name + ".bam")
+	#os.system("samtools index /vol/mf-tumor/WGS_Test_Mapping/T2T-" + sample_name + ".bam")
+	
+	os.system("zcat /vol/mf-tumor/FASTQ/" + sample_name + ".pass.fastq.gz | awk \"{if(NR%4==2) print length($1)}\" > /vol/mf-tumor/" + sample_name + "-readslenght.txt")
+	
+	#os.system("samtools bedcov -Q 1 /vol/mf-tumor/intervals/wgs_1MB_intervals.bed /vol/mf-tumor/WGS_Test_Mapping/" + sample_name +"-ngmlr.bam > /vol/mf-tumor/WGS_Test_Mapping/" + sample_name +"-ngmlr-wgs_1MB_intervals.bed")
+	#os.system("samtools bedcov -Q 1 /vol/mf-tumor/intervals/C053_CNV.bed /vol/mf-tumor/WGS_Test_Mapping/" + sample_name +"-ngmlr.bam > /vol/mf-tumor/WGS_Test_Mapping/" + sample_name +"-ngmlr-C053_CNV.bed")
+	#os.system("samtools bedcov -Q 1 /vol/mf-tumor/intervals/hg38-chromosomband.bed /vol/mf-tumor/WGS_Test_Mapping/" + sample_name +"-ngmlr.bam > /vol/mf-tumor/WGS_Test_Mapping/" + sample_name +"-ngmlr-hg38-chromosomband.bed")
+	
+def CTCL_ngmlr (fastq_datei, sample_name):
+	#os.system("cat " + fastq_datei +"*.fastq.gz > /vol/mf-tumor/" + sample_name +".fastq.gz")
+	#os.system("/vol/mf-tumor/tools/Porechop/./porechop-runner.py -i /vol/mf-tumor/" + sample_name + ".fastq.gz -o /vol/mf-tumor/" + sample_name + "-porechop.fastq.gz")
+	os.system("/vol/mf-tumor/tools/ngmlr-0.2.7/ngmlr -t 4 -r /vol/mf-tumor/GCA_009914755.4_CHM13_T2T_v2.0_genomic.fna/T2T.fna -q /vol/mf-tumor/" + sample_name + "-porechop.fastq.gz > /vol/mf-tumor/Mappings/T2T-" + sample_name + "-ngmlr.sam")
+	#os.system("samtools sort -@ 16 /vol/mf-tumor/Mappings/T2T-" + sample_name +"-ngmlr.sam -o /vol/mf-tumor/Mappings/T2T-" + sample_name + "-sort-ngmlr.sam")
+	#os.system("samtools view -bh -@ 16 /vol/mf-tumor/Mappings/T2T-" + sample_name + "-sort-ngmlr.sam -o /vol/mf-tumor/WGS_Test_Mapping/T2T-" + sample_name + "-ngmlr.bam")
+	#os.system("samtools index /vol/mf-tumor/WGS_Test_Mapping/T2T-" + sample_name + "-ngmlr.bam")	
+
+def merge(sample_name1, sample_name2, sample_name3, sample_name4, sample_name5, sample_name6, sample_name7):
+	os.system("samtools merge -@ 16 /vol/mf-tumor/WGS_Test_Mapping/T2T-CTCL.bam /vol/mf-tumor/WGS_Test_Mapping/" + sample_name1 +".bam /vol/mf-tumor/WGS_Test_Mapping/" +sample_name2 +".bam /vol/mf-tumor/WGS_Test_Mapping/" +sample_name3 +".bam /vol/mf-tumor/WGS_Test_Mapping/" +sample_name4 +".bam /vol/mf-tumor/WGS_Test_Mapping/" +sample_name5  +".bam /vol/mf-tumor/WGS_Test_Mapping/" +sample_name6 +".bam /vol/mf-tumor/WGS_Test_Mapping/" +sample_name7 +".bam")
+
+def CTCL_RNA (fastq_datei, sample_name):
+	os.system("cat " + fastq_datei +"*.fastq.gz > /vol/mf-tumor/" + sample_name +".fastq.gz")
+	
+	os.system("/vol/mf-tumor/tools/Porechop/./porechop-runner.py -i /vol/mf-tumor/" + sample_name +".fastq.gz -o /vol/mf-tumor/" + sample_name +"-porechop.fastq.gz")
+	os.system("minimap2 -a -x splice -t 14 /vol/mf-tumor/reference/Homo_sapiens_assembly38.fasta /vol/mf-tumor/" + sample_name +"-porechop.fastq.gz | samtools view -b | samtools sort  > /vol/mf-tumor/WGS_Test_Mapping/" + sample_name +".bam")
+	os.system("samtools index /vol/mf-tumor/WGS_Test_Mapping/" + sample_name + ".bam")
+	os.system("rm /vol/mf-tumor/" + sample_name + "-porechop.fastq.gz")
+	os.system("rm /vol/mf-tumor/" + sample_name + ".fastq.gz")
+	
+
+#CTCL_Genom("/vol/mf-tumor/FASTQ/Run00789_MIN106_RAD004/no_sample/20211025_1152_X1_FAR10558_583f8015/fastq_pass/" , "Run789")
+#CTCL_RNA("/vol/mf-tumor/FASTQ/Run01038_MIN106_PCS109/fastq_pass/", "Run1038")
+#CTCL_ngmlr("/vol/mf-tumor/FASTQ/Run00791_MIN106_LSK109/no_sample/20211026_1348_X3_FAR06401_41c442bd/fastq_pass/", "Run793")
+#CTCL_Genom("/vol/mf-tumor/FASTQ/Run00791_MIN106_LSK109/no_sample/20211026_1348_X3_FAR06401_41c442bd/fastq_pass/", "Run876")
+#CTCL_Genom("/vol/mf-tumor/FASTQ/Run00876_MIN106_LSK109/no_sample/20220119_1321_X1_FAR66237_bc423846/fastq_pass/" , "Run713_714_789_790_791_793_876-ngmlr")
+
+#CTCL_Genom("/vol/mf-tumor/fastq_pass/" , "Run713_714_789_790_791_793_876")
+CTCL_Genom("/vol/mf-tumor/fastq_pass/" , "Run00661.Run00662.Run01038")
+
+#CTCL_ngmlr("/vol/mf-tumor/fastq_pass/" , "Run876")
+#merge ("T2T-Run713", "T2T-Run714", "T2T-Run789", "T2T-Run790", "T2T-Run791", "T2T-Run793", "T2T-Run876")
+
