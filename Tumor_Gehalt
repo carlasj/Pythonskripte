@@ -1,0 +1,97 @@
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+
+
+Base_array=[]
+for line in open ("/vol/mf-tumor/2022_02_WGS_LSK/HH_05_Gew_final-filtered.PASS.vcf"):
+	if not line.startswith("#"):
+		splits = line.split("\t")
+		Base=splits[4]
+		print(Base)
+		Base_array.append(Base)
+
+
+array1=[]
+array2=[]
+
+for line in open ("/vol/mf-tumor/2022_02_WGS_LSK/RNA_WGS_Seq.pileup.txt"):
+	
+		
+	splits = line.split("\t")
+	#print(splits[4])
+	x=splits[7]
+	array1.append(x)
+	Coverage=splits[6]
+	array2.append(Coverage)
+
+print(len(Base_array))
+print(len(array1))
+print(len(array2))
+
+#print(array1)
+#result_file = open("/vol/mf-tumor/Test_Tumorgehalt-RNA.txt", "w")
+data_df ={"Base": (Base_array), "Coverage": (array2), "x": (array1)}
+df=pd.DataFrame(data_df)
+print(df)
+
+df.to_csv(r"/vol/mf-tumor/Test_Tumorgehalt-DNA.txt", header=None, index=None, sep="\t")
+
+array=[]
+	
+for line in open ("/vol/mf-tumor/Test_Tumorgehalt-DNA.txt"):
+	
+		
+	splits = line.split("\t")
+	#print(splits[4])
+	x=splits[2]
+	Coverage=splits[1]
+	Base=splits[0]
+	#print(x)
+	#print(Coverage)
+	if int(Coverage) > 0:
+		#M=x.count(".")
+		#M2=x.count(",")
+		#G=(int(M)+(int(M2)))/int(Coverage)
+		#print(G)
+		#array.append(G)
+		if Base == "A" or "a":
+			A=x.count("a")
+			A2=x.count("A")
+			#print(int(M)+int(M2))
+			G=(int(A))+(int(A2))/int(Coverage)
+			if G > 1:
+				G=1
+			#print(G)
+		elif Base =="T" or "t":
+			T=x.count("t")
+			T2=x.count("T")
+		#print(int(M)+int(M2))
+			G=(int(T))+(int(T2))/int(Coverage)
+			if G > 1:
+				G=1
+		#	print(G)
+		elif Base == "C" or "c":
+			A=x.count("c")
+			A2=x.count("C")
+			#print(int(M)+int(M2))
+			G=(int(A))+(int(A2))/int(Coverage)
+			if G > 1:
+				G=1
+		#	print(G)
+		elif Base =="G" or "g":
+			G=x.count("g")
+			G2=x.count("G")
+			#print(int(M)+int(M2))
+			G=(int(G))+(int(G2))/int(Coverage)
+			if G > 1:
+				G=1
+		array.append(G)
+print(array)	
+#for line in array:
+#	print(line)
+	#Anteil=1-int(line)
+	#print(Anteil)
+mean =sum(array)/len(array)
+print("Tumorgehalt ist: " + str(float(mean)))	
+		
