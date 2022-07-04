@@ -1,0 +1,537 @@
+
+import seaborn as sns
+import ChromosomeMetrics
+import matplotlib.pyplot as plt
+import Plotting_Methods
+import numpy as np
+import pandas as pd
+import matplotlib
+import matplotlib.pyplot as plt
+import sklearn
+
+
+i=0
+Anzahl_methylierter_CpGs=0
+Anzahl_CpGs=0
+#def Anzahl_Mehtylierung(vcf_file, nummer):
+Nummer1 =[]
+for line in open ("/vol/mf-tumor/Gliom/MGMT_Promotor/Run919-1-Pileup.vcf"):
+	
+	if i%2==0 or i==0:
+		splits = line.split("\t")
+		#print(splits[4])
+		x=splits[4]
+		Coverage=splits[3]
+		if int(Coverage)>=50:
+			M=x.count("C")
+			M2=x.count("c")
+			#print(int(M)+int(M2))
+			G=(int(M))+(int(M2))
+			Anteil=int(G)/float(Coverage)
+			print(i)
+			Anzahl_CpGs+=1
+			if Anteil >= 0.1:
+				
+				Nummer1.append(float(Anteil))
+			if Anteil>=0.2:
+				Anzahl_methylierter_CpGs+=1			
+					
+	i+=1
+	
+
+i=0
+Anzahl_methylierter_CpGs=0
+Anzahl_CpGs=0
+#def Anzahl_Mehtylierung(vcf_file, nummer):
+Nummer2 =[]
+for line in open ("/vol/mf-tumor/Gliom/MGMT_Promotor/Run919-2-Pileup.vcf"):
+	
+	if i%2==0 or i==0:
+		splits = line.split("\t")
+		#print(splits[4])
+		x=splits[4]
+		Coverage=splits[3]
+		if int(Coverage)>=50:
+			M=x.count("C")
+			M2=x.count("c")
+			#print(int(M)+int(M2))
+			G=(int(M))+(int(M2))
+			Anteil=int(G)/float(Coverage)
+			print(i)
+			Anzahl_CpGs+=1
+			if Anteil >= 0.1:
+				
+				Nummer2.append(float(Anteil))
+			if Anteil>=0.2:
+				Anzahl_methylierter_CpGs+=1			
+					
+	i+=1
+		
+
+
+i=0
+Anzahl_methylierter_CpGs=0
+Anzahl_CpGs=0
+#def Anzahl_Mehtylierung(vcf_file, nummer):
+Nummer3 =[]
+for line in open ("/vol/mf-tumor/Gliom/MGMT_Promotor/Run919-3-Pileup.vcf"):
+	
+	if i%2==0 or i==0:
+		splits = line.split("\t")
+		#print(splits[4])
+		x=splits[4]
+		Coverage=splits[3]
+		if int(Coverage)>=50:
+			M=x.count("C")
+			M2=x.count("c")
+			#print(int(M)+int(M2))
+			G=(int(M))+(int(M2))
+			Anteil=int(G)/float(Coverage)
+			print(i)
+			Anzahl_CpGs+=1
+			if Anteil >= 0.1:
+				
+				Nummer3.append(float(Anteil))
+			if Anteil>=0.2:
+				Anzahl_methylierter_CpGs+=1			
+					
+	i+=1
+
+
+i=0
+Anzahl_methylierter_CpGs=0
+Anzahl_CpGs=0
+#def Anzahl_Mehtylierung(vcf_file, nummer):
+Nummer4 =[]
+for line in open ("/vol/mf-tumor/Gliom/MGMT_Promotor/Run919-4-Pileup.vcf"):
+	
+	if i%2==0 or i==0:
+		splits = line.split("\t")
+		#print(splits[4])
+		x=splits[4]
+		Coverage=splits[3]
+		if int(Coverage)>=50:
+			M=x.count("C")
+			M2=x.count("c")
+			#print(int(M)+int(M2))
+			G=(int(M))+(int(M2))
+			Anteil=int(G)/float(Coverage)
+			print(i)
+			Anzahl_CpGs+=1
+			if Anteil >= 0.1:
+				
+				Nummer4.append(float(Anteil))
+			if Anteil>=0.2:
+				Anzahl_methylierter_CpGs+=1			
+					
+	i+=1
+
+
+i=0
+Anzahl_methylierter_CpGs=0
+Anzahl_CpGs=0
+#def Anzahl_Mehtylierung(vcf_file, nummer):
+Nummer5 =[]
+for line in open ("/vol/mf-tumor/Gliom/MGMT_Promotor/Run871-2-Pileup.vcf"):
+	
+	if i%2==0 or i==0:
+		splits = line.split("\t")
+		#print(splits[4])
+		x=splits[4]
+		Coverage=splits[3]
+		if int(Coverage)>=50:
+			M=x.count("C")
+			M2=x.count("c")
+			#print(int(M)+int(M2))
+			G=(int(M))+(int(M2))
+			Anteil=int(G)/float(Coverage)
+			print(i)
+			Anzahl_CpGs+=1
+			if Anteil >= 0.1:
+				
+				Nummer5.append(float(Anteil))
+			if Anteil>=0.2:
+				Anzahl_methylierter_CpGs+=1			
+					
+	i+=1
+				
+i=0
+Anzahl_methylierter_CpGs=0
+Anzahl_CpGs=0
+#def Anzahl_Mehtylierung(vcf_file, nummer):
+Nummer6 =[]
+for line in open ("/vol/mf-tumor/Gliom/MGMT_Promotor/Run844-4-Pileup.vcf"):
+	
+	if i%2==0 or i==0:
+		splits = line.split("\t")
+		#print(splits[4])
+		x=splits[4]
+		Coverage=splits[3]
+		if int(Coverage)>=50:
+			M=x.count("C")
+			M2=x.count("c")
+			#print(int(M)+int(M2))
+			G=(int(M))+(int(M2))
+			Anteil=int(G)/float(Coverage)
+			print(i)
+			Anzahl_CpGs+=1
+			if Anteil >= 0.1:
+				
+				Nummer6.append(float(Anteil))
+			if Anteil>=0.2:
+				Anzahl_methylierter_CpGs+=1			
+					
+	i+=1
+				
+i=0
+Anzahl_methylierter_CpGs=0
+Anzahl_CpGs=0
+#def Anzahl_Mehtylierung(vcf_file, nummer):
+Nummer7 =[]
+for line in open ("/vol/mf-tumor/Gliom/MGMT_Promotor/Run904-1-Pileup.vcf"):
+	
+	if i%2==0 or i==0:
+		splits = line.split("\t")
+		#print(splits[4])
+		x=splits[4]
+		Coverage=splits[3]
+		if int(Coverage)>=50:
+			M=x.count("C")
+			M2=x.count("c")
+			#print(int(M)+int(M2))
+			G=(int(M))+(int(M2))
+			Anteil=int(G)/float(Coverage)
+			print(i)
+			Anzahl_CpGs+=1
+			if Anteil >= 0.1:
+				
+				Nummer7.append(float(Anteil))
+			if Anteil>=0.2:
+				Anzahl_methylierter_CpGs+=1			
+					
+	i+=1
+				
+i=0
+Anzahl_methylierter_CpGs=0
+Anzahl_CpGs=0
+#def Anzahl_Mehtylierung(vcf_file, nummer):
+Nummer8 =[]
+for line in open ("/vol/mf-tumor/Gliom/MGMT_Promotor/Run904-2-Pileup.vcf"):
+	
+	if i%2==0 or i==0:
+		splits = line.split("\t")
+		#print(splits[4])
+		x=splits[4]
+		Coverage=splits[3]
+		if int(Coverage)>=50:
+			M=x.count("C")
+			M2=x.count("c")
+			#print(int(M)+int(M2))
+			G=(int(M))+(int(M2))
+			Anteil=int(G)/float(Coverage)
+			print(i)
+			Anzahl_CpGs+=1
+			if Anteil >= 0.1:
+				
+				Nummer8.append(float(Anteil))
+			if Anteil>=0.2:
+				Anzahl_methylierter_CpGs+=1			
+					
+	i+=1
+				
+													
+	#df = pd.melt( pd.DataFrame( {Run_name:Nummer}), var_name = "Run", value_name = "Anteil_Methylierungen")
+	#df.insert(0, "Ort", ("Target"), True)
+#print(array1)
+
+i=0
+Anzahl_methylierter_CpGs=0
+Anzahl_CpGs=0
+#def Anzahl_Mehtylierung(vcf_file, nummer):
+Nummer9 =[]
+for line in open ("/vol/mf-tumor/Gliom/MGMT_Promotor/Run904-3-Pileup.vcf"):
+	
+	if i%2==0 or i==0:
+		splits = line.split("\t")
+		#print(splits[4])
+		x=splits[4]
+		Coverage=splits[3]
+		if int(Coverage)>=50:
+			M=x.count("C")
+			M2=x.count("c")
+			#print(int(M)+int(M2))
+			G=(int(M))+(int(M2))
+			Anteil=int(G)/float(Coverage)
+			print(i)
+			Anzahl_CpGs+=1
+			if Anteil >= 0.1:
+				
+				Nummer9.append(float(Anteil))
+			if Anteil>=0.2:
+				Anzahl_methylierter_CpGs+=1			
+					
+	i+=1
+				
+i=0
+Anzahl_methylierter_CpGs=0
+Anzahl_CpGs=0
+#def Anzahl_Mehtylierung(vcf_file, nummer):
+Nummer10 =[]
+for line in open ("/vol/mf-tumor/Gliom/MGMT_Promotor/Run935-1-Pileup.vcf"):
+	
+	if i%2==0 or i==0:
+		splits = line.split("\t")
+		#print(splits[4])
+		x=splits[4]
+		Coverage=splits[3]
+		if int(Coverage)>=50:
+			M=x.count("C")
+			M2=x.count("c")
+			#print(int(M)+int(M2))
+			G=(int(M))+(int(M2))
+			Anteil=int(G)/float(Coverage)
+			print(i)
+			Anzahl_CpGs+=1
+			if Anteil >= 0.1:
+				
+				Nummer10.append(float(Anteil))
+			if Anteil>=0.2:
+				Anzahl_methylierter_CpGs+=1			
+					
+	i+=1			
+
+i=0
+Anzahl_methylierter_CpGs=0
+Anzahl_CpGs=0
+#def Anzahl_Mehtylierung(vcf_file, nummer):
+Nummer11 =[]
+for line in open ("/vol/mf-tumor/Gliom/MGMT_Promotor/Run935-3-Pileup.vcf"):
+	
+	if i%2==0 or i==0:
+		splits = line.split("\t")
+		#print(splits[4])
+		x=splits[4]
+		Coverage=splits[3]
+		if int(Coverage)>=50:
+			M=x.count("C")
+			M2=x.count("c")
+			#print(int(M)+int(M2))
+			G=(int(M))+(int(M2))
+			Anteil=int(G)/float(Coverage)
+			print(i)
+			Anzahl_CpGs+=1
+			if Anteil >= 0.1:
+				
+				Nummer11.append(float(Anteil))
+			if Anteil>=0.2:
+				Anzahl_methylierter_CpGs+=1			
+					
+	i+=1
+
+
+i=0
+Anzahl_methylierter_CpGs=0
+Anzahl_CpGs=0
+#def Anzahl_Mehtylierung(vcf_file, nummer):
+Nummer12 =[]
+for line in open ("/vol/mf-tumor/Gliom/MGMT_Promotor/Run935-4-Pileup.vcf"):
+	
+	if i%2==0 or i==0:
+		splits = line.split("\t")
+		#print(splits[4])
+		x=splits[4]
+		Coverage=splits[3]
+		if int(Coverage)>=50:
+			M=x.count("C")
+			M2=x.count("c")
+			#print(int(M)+int(M2))
+			G=(int(M))+(int(M2))
+			Anteil=int(G)/float(Coverage)
+			print(i)
+			Anzahl_CpGs+=1
+			if Anteil >= 0.1:
+				
+				Nummer12.append(float(Anteil))
+			if Anteil>=0.2:
+				Anzahl_methylierter_CpGs+=1			
+					
+	i+=1
+
+
+
+i=0
+Anzahl_methylierter_CpGs=0
+Anzahl_CpGs=0
+#def Anzahl_Mehtylierung(vcf_file, nummer):
+Nummer13 =[]
+for line in open ("/vol/mf-tumor/Gliom/MGMT_Promotor/Run935-8-Pileup.vcf"):
+	
+	if i%2==0 or i==0:
+		splits = line.split("\t")
+		#print(splits[4])
+		x=splits[4]
+		Coverage=splits[3]
+		if int(Coverage)>=50:
+			M=x.count("C")
+			M2=x.count("c")
+			#print(int(M)+int(M2))
+			G=(int(M))+(int(M2))
+			Anteil=int(G)/float(Coverage)
+			print(i)
+			Anzahl_CpGs+=1
+			if Anteil >= 0.1:
+				
+				Nummer13.append(float(Anteil))
+			if Anteil>=0.2:
+				Anzahl_methylierter_CpGs+=1			
+					
+	i+=1
+
+
+
+df1 = pd.melt( pd.DataFrame( {"G-AS":Nummer1}), var_name = "Probe", value_name = "Anteil_Methylierungen")
+df2 = pd.melt( pd.DataFrame( {"G-HA":Nummer2}), var_name = "Probe", value_name = "Anteil_Methylierungen")
+df3 = pd.melt( pd.DataFrame( {"G-SD":Nummer3}), var_name = "Probe", value_name = "Anteil_Methylierungen")
+df4 = pd.melt( pd.DataFrame( {"G-GC":Nummer4}), var_name = "Probe", value_name = "Anteil_Methylierungen")
+df5 = pd.melt( pd.DataFrame( {"G-MB":Nummer5}), var_name = "Probe", value_name = "Anteil_Methylierungen")
+
+df6 = pd.melt( pd.DataFrame( {"G-ES":Nummer6}), var_name = "Probe", value_name = "Anteil_Methylierungen")
+df7 = pd.melt( pd.DataFrame( {"G-NS":Nummer7}), var_name = "Probe", value_name = "Anteil_Methylierungen")
+df8 = pd.melt( pd.DataFrame( {"G-PK":Nummer8}), var_name = "Probe", value_name = "Anteil_Methylierungen")
+df9 = pd.melt( pd.DataFrame( {"G-MK":Nummer9}), var_name = "Probe", value_name = "Anteil_Methylierungen")
+df10 = pd.melt( pd.DataFrame( {"G-EO":Nummer10}), var_name = "Probe", value_name = "Anteil_Methylierungen")
+df11 = pd.melt( pd.DataFrame( {"G-BS":Nummer11}), var_name = "Probe", value_name = "Anteil_Methylierungen")
+df12 = pd.melt( pd.DataFrame( {"G-LE":Nummer12}), var_name = "Probe", value_name = "Anteil_Methylierungen")
+df13 = pd.melt( pd.DataFrame( {"G-CB":Nummer13}), var_name = "Probe", value_name = "Anteil_Methylierungen")
+
+df1.insert(0, "Ort", ("Target"), True)
+df2.insert(0, "Ort",("Off-Target"), True)
+df3.insert(0, "Ort", ("Target"), True)
+df4.insert(0, "Ort",("Off-Target"), True)
+df5.insert(0, "Ort", ("Target"), True)
+df = pd.concat([df1, df2, df3, df4, df5, df6, df7, df8, df9, df10, df11, df12, df13])
+df_all=pd.concat([ df7, df8, df9, df10, df11, df12])
+
+
+	#sns.set_style("whitegrid")
+	#sns.boxplot(x="Run844-4", y="Anteil_Methylierungen",
+	#            hue="Ort", palette=["r", "g", "b", "m"],
+	#           data=df, showfliers=False )
+	#sns.despine(offset=10, trim=True)
+
+
+
+def Bisulfitauswertung2 (Run_name):
+	i=0
+	Anzahl_methylierter_CpGs=0
+	Anzahl_CpGs=0
+
+	result_file = open("/vol/mf-tumor/Gliom/MGMT_Promotor/Bisulfit-" + Run_name + "-Coverage.seg", "w")
+	result_file.write("SAMPLE\tCHR\tSTART\tSTOP\tVALUE\n")
+
+	result_file2 = open("/vol/mf-tumor/Gliom/MGMT_Promotor/Bisulfit-"+ Run_name + "-Anteil_Methylierung.seg", "w")
+	result_file2.write("SAMPLE\tCHR\tSTART\tSTOP\tVALUE\n")
+
+	result_file3 = open("/vol/mf-tumor/Gliom/MGMT_Promotor/Bisulfit-" + Run_name +" -Klassifizierung_Methylierung.seg", "w")
+	result_file3.write("SAMPLE\tCHR\tSTART\tSTOP\tVALUE\n")
+	
+	i=0
+	Anzahl_methylierter_CpGs=0
+	Anzahl_CpGs=0
+	
+	for line in open("/vol/mf-tumor/Gliom/MGMT_Promotor/" +Run_name +"-Pileup.vcf"):
+	
+		if i%2==0 or i==0:
+			splits = line.split("\t")
+		#print(splits[4])
+			x=splits[4]
+			Coverage=splits[3]
+			if int(Coverage)>=50:
+				M=x.count("C")
+				M2=x.count("c")
+			#print(int(M)+int(M2))
+				G=(int(M))+(int(M2))
+				Anteil=int(G)/float(Coverage)
+				#print(i)
+				Anzahl_CpGs+=1
+				if Anteil>=0.2:
+					Anzahl_methylierter_CpGs+=1
+					result_file3.write(Run_name+"\t"+splits[0]+"\t"+str(int(splits[1])-1)+"\t"+splits[1]+"\t1\n")
+				else:
+					
+					result_file3.write(Run_name+"\t"+splits[0]+"\t"+str(int(splits[1])-1)+"\t"+splits[1]+"\t0\n")
+				
+				result_file.write(Run_name+"\t"+splits[0]+"\t"+str(int(splits[1])-1)+"\t"+splits[1]+"\t"+str(Coverage)+"\n")
+				result_file2.write(Run_name+"\t"+splits[0]+"\t"+str(int(splits[1])-1)+"\t"+splits[1]+"\t"+str(Anteil)+"\n")
+		i+=1
+#print("Anzahl methylierter CpGs: "+str(Anzahl_methylierter_CpGs))
+#print("Anzahl CpGs: "+str(Anzahl_CpGs))
+	if int(Anzahl_CpGs) != 0:
+		print(str(Run_name) + "Anteil methylierter CpGs: "+str(Anzahl_methylierter_CpGs/Anzahl_CpGs))
+
+array=[]
+def Bisulfitauswertung (Run_name):
+	
+	i=0
+	Anzahl_methylierter_CpGs=0
+	Anzahl_CpGs=0
+	Nummer1=[]
+	
+	for line in open ("/vol/mf-tumor/Gliom/MGMT_Promotor/"+ Run_name +"-Pileup.vcf"):
+	
+		if i%2==0 or i==0:
+			splits = line.split("\t")
+		#print(splits[4])
+			x=splits[4]
+			Coverage=splits[3]
+			if int(Coverage)>=50:
+				M=x.count("C")
+				M2=x.count("c")
+				#print(int(M)+int(M2))
+				G=(int(M))+(int(M2))
+				Anteil=int(G)/float(Coverage)
+				#print(i)
+				Anzahl_CpGs+=1
+				if Anteil >= 0.1:
+				
+					Nummer1.append(float(Anteil))
+				if Anteil>=0.2:
+					Anzahl_methylierter_CpGs+=1			
+					
+		i+=1
+
+	if Anzahl_CpGs !=0:
+		array.append((float(Anzahl_methylierter_CpGs)/float(Anzahl_CpGs)))
+		print(str(Run_name) + " Anteil methylierter CpGs: " + str(float(Anzahl_methylierter_CpGs)/float(Anzahl_CpGs)))
+		
+	
+
+xwerte =["G-AS", "G-HA", "G-SD", "G-GC", "G-MB", "G-ES", "G-NS", "G-PK", "G-MK", "G-EO", "G-BS", "G-LE", "G-CB"]
+Bisulfitauswertung("Run919-1")
+Bisulfitauswertung("Run919-2")
+Bisulfitauswertung("Run919-3")
+Bisulfitauswertung("Run919-4")
+Bisulfitauswertung("Run871-2")
+Bisulfitauswertung("Run844-4")
+Bisulfitauswertung("Run904-1")
+Bisulfitauswertung("Run904-2")
+Bisulfitauswertung("Run904-3")
+Bisulfitauswertung("Run935-1")
+Bisulfitauswertung("Run935-3")
+Bisulfitauswertung("Run935-4")
+Bisulfitauswertung("Run935-8")
+
+
+fig, axes = plt.subplots(2, 1)
+#ax1 = plt.subplot(211)
+#ax2 = plt.subplot(212)
+
+sns.swarmplot(ax=axes[0], x="Probe", y="Anteil_Methylierungen", color="black", data=df, palette=["r", "g", "b", "c", "firebrick", "y", "m", "olive", "black", "brown", "orange", "lime", "coral" ])#, color= "black", order=["Target", "Off-Target"])
+#ax1.set_ylim(0, 1)
+
+sns.barplot(ax=axes[1], x=xwerte, y=array, palette=["r", "g", "b", "c", "firebrick", "y", "m", "olive", "black", "brown", "orange", "lime", "coral"])
+axes[1].set_ylim(0, 1)
+#ax2.set_ylim(0, 1)
+axes[1].set_ylabel("Anteil methylierter CpGs")
+axes[1].set_xlabel("Probe")
+plt.show()
