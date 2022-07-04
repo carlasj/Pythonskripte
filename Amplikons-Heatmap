@@ -1,0 +1,629 @@
+import seaborn as sns
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib import cm
+
+
+Gene = ["EGFR01", "EGFR02", "EGFR03", "ATRX01", "ATRX02", "ATRX03", "H3F3A01", "H3F3A02", "TP5301", "TP5302", "TP5303", "IDH1", "IDH2", "PTEN01", "PTEN02", "BRAF", "PIK3CA01", "PIK3CA02", "TERT01"]
+
+Coverage_Wert1=[]
+
+with open("../Gliom/Gliom-Amplikons/Gliom_11-Amplikons.bed") as f:
+	for line in f:
+		#print(line)
+		#print(line.split("\t"))
+		
+		splits = line.split("\t")
+		
+		#print(splits[0])
+		
+		try:
+			Chromosom =splits[0]
+			Start =int(splits[1])
+			Ende=int(splits[2])
+			Basen=float(splits[3])
+
+			length = Ende - Start
+			
+			if length != 0:
+				Coverage=Basen/length
+			if length == 0:
+				Coverage= 0
+				
+			Coverage_Wert1.append(Coverage)
+		
+		#	print(Coverage)
+			
+			#absStart=ChromosomeMetrics.GetAbsolutePosition(Chromosom, Start)
+			#absStop=ChromosomeMetrics.GetAbsolutePosition(Chromosom, Ende)
+		#	print(absStart)
+		#	print(absStop)
+		
+							
+			
+				
+		except ValueError:
+		#	print(line)
+			break
+				
+
+Coverage_Wert2=[]
+
+with open("../Gliom/Gliom-Amplikons/Gliom_16-Amplikons.bed") as f:
+	for line in f:
+		#print(line)
+		#print(line.split("\t"))
+		
+		splits = line.split("\t")
+		
+		#print(splits[0])
+		
+		try:
+			Chromosom =splits[0]
+			Start =int(splits[1])
+			Ende=int(splits[2])
+			Basen=float(splits[3])
+
+			length = Ende - Start
+			
+			if length != 0:
+				Coverage=Basen/length
+			if length == 0:
+				Coverage= 0
+				
+			Coverage_Wert2.append(Coverage)
+		
+		#	print(Coverage)
+			
+			#absStart=ChromosomeMetrics.GetAbsolutePosition(Chromosom, Start)
+			#absStop=ChromosomeMetrics.GetAbsolutePosition(Chromosom, Ende)
+		#	print(absStart)
+		#	print(absStop)
+		
+							
+			
+				
+		except ValueError:
+		#	print(line)
+			break
+
+Coverage_Wert3=[]
+
+with open("../Gliom/Gliom-Amplikons/Gliom_12-Amplikons.bed") as f:
+	for line in f:
+		#print(line)
+		#print(line.split("\t"))
+		
+		splits = line.split("\t")
+		
+		#print(splits[0])
+		
+		try:
+			Chromosom =splits[0]
+			Start =int(splits[1])
+			Ende=int(splits[2])
+			Basen=float(splits[3])
+
+			length = Ende - Start
+			
+			if length != 0:
+				Coverage=Basen/length
+			if length == 0:
+				Coverage= 0
+				
+			Coverage_Wert3.append(Coverage)
+		
+		#	print(Coverage)
+			
+			#absStart=ChromosomeMetrics.GetAbsolutePosition(Chromosom, Start)
+			#absStop=ChromosomeMetrics.GetAbsolutePosition(Chromosom, Ende)
+		#	print(absStart)
+		#	print(absStop)
+		
+							
+			
+				
+		except ValueError:
+		#	print(line)
+			break
+			
+Coverage_Wert4=[]
+
+with open("../Gliom/Gliom-Amplikons/Gliom_03-neu-Amplikons.bed") as f:
+	for line in f:
+		#print(line)
+		#print(line.split("\t"))
+		
+		splits = line.split("\t")
+		
+		#print(splits[0])
+		
+		try:
+			Chromosom =splits[0]
+			Start =int(splits[1])
+			Ende=int(splits[2])
+			Basen=float(splits[3])
+
+			length = Ende - Start
+			
+			if length != 0:
+				Coverage=Basen/length
+			if length == 0:
+				Coverage= 0
+				
+			Coverage_Wert4.append(Coverage)
+		
+		#	print(Coverage)
+			
+			#absStart=ChromosomeMetrics.GetAbsolutePosition(Chromosom, Start)
+			#absStop=ChromosomeMetrics.GetAbsolutePosition(Chromosom, Ende)
+		#	print(absStart)
+		#	print(absStop)
+		
+							
+			
+				
+		except ValueError:
+		#	print(line)
+			break
+
+Coverage_Wert5=[]
+
+with open("../Gliom/Gliom-Amplikons/Gliom_6-Amplikons.bed") as f:
+	for line in f:
+		#print(line)
+		#print(line.split("\t"))
+		
+		splits = line.split("\t")
+		
+		#print(splits[0])
+		
+		try:
+			Chromosom =splits[0]
+			Start =int(splits[1])
+			Ende=int(splits[2])
+			Basen=float(splits[3])
+
+			length = Ende - Start
+			
+			if length != 0:
+				Coverage=Basen/length
+			if length == 0:
+				Coverage= 0
+				
+			Coverage_Wert5.append(Coverage)
+		
+		#	print(Coverage)
+			
+			#absStart=ChromosomeMetrics.GetAbsolutePosition(Chromosom, Start)
+			#absStop=ChromosomeMetrics.GetAbsolutePosition(Chromosom, Ende)
+		#	print(absStart)
+		#	print(absStop)
+		
+							
+			
+				
+		except ValueError:
+		#	print(line)
+			break
+
+
+
+Coverage_Wert6=[]
+
+with open("../Gliom/Gliom-Amplikons/Gliom_1-Amplikons.bed") as f:
+	for line in f:
+		#print(line)
+		#print(line.split("\t"))
+		
+		splits = line.split("\t")
+		
+		#print(splits[0])
+		
+		try:
+			Chromosom =splits[0]
+			Start =int(splits[1])
+			Ende=int(splits[2])
+			Basen=float(splits[3])
+
+			length = Ende - Start
+			
+			if length != 0:
+				Coverage=Basen/length
+			if length == 0:
+				Coverage= 0
+				
+			Coverage_Wert6.append(Coverage)
+		
+		#	print(Coverage)
+			
+			#absStart=ChromosomeMetrics.GetAbsolutePosition(Chromosom, Start)
+			#absStop=ChromosomeMetrics.GetAbsolutePosition(Chromosom, Ende)
+		#	print(absStart)
+		#	print(absStop)
+		
+							
+			
+				
+		except ValueError:
+		#	print(line)
+			break
+
+
+Coverage_Wert7=[]
+
+with open("../Gliom/Gliom-Amplikons/Gliom_7-Amplikons.bed") as f:
+	for line in f:
+		#print(line)
+		#print(line.split("\t"))
+		
+		splits = line.split("\t")
+		
+		#print(splits[0])
+		
+		try:
+			Chromosom =splits[0]
+			Start =int(splits[1])
+			Ende=int(splits[2])
+			Basen=float(splits[3])
+
+			length = Ende - Start
+			
+			if length != 0:
+				Coverage=Basen/length
+			if length == 0:
+				Coverage= 0
+				
+			Coverage_Wert7.append(Coverage)
+		
+		#	print(Coverage)
+			
+			#absStart=ChromosomeMetrics.GetAbsolutePosition(Chromosom, Start)
+			#absStop=ChromosomeMetrics.GetAbsolutePosition(Chromosom, Ende)
+		#	print(absStart)
+		#	print(absStop)
+		
+							
+			
+				
+		except ValueError:
+		#	print(line)
+			break
+
+
+Coverage_Wert8=[]
+
+with open("../Gliom/Gliom-Amplikons/Gliom_04-Amplikons.bed") as f:
+	for line in f:
+		#print(line)
+		#print(line.split("\t"))
+		
+		splits = line.split("\t")
+		
+		#print(splits[0])
+		
+		try:
+			Chromosom =splits[0]
+			Start =int(splits[1])
+			Ende=int(splits[2])
+			Basen=float(splits[3])
+
+			length = Ende - Start
+			
+			if length != 0:
+				Coverage=Basen/length
+			if length == 0:
+				Coverage= 0
+				
+			Coverage_Wert8.append(Coverage)
+		
+		#	print(Coverage)
+			
+			#absStart=ChromosomeMetrics.GetAbsolutePosition(Chromosom, Start)
+			#absStop=ChromosomeMetrics.GetAbsolutePosition(Chromosom, Ende)
+		#	print(absStart)
+		#	print(absStop)
+		
+							
+			
+				
+		except ValueError:
+		#	print(line)
+			break
+
+
+
+Coverage_Wert9=[]
+
+with open("../Gliom/Gliom-Amplikons/Gliom_8-Amplikons.bed") as f:
+	for line in f:
+		#print(line)
+		#print(line.split("\t"))
+		
+		splits = line.split("\t")
+		
+		#print(splits[0])
+		
+		try:
+			Chromosom =splits[0]
+			Start =int(splits[1])
+			Ende=int(splits[2])
+			Basen=float(splits[3])
+
+			length = Ende - Start
+			
+			if length != 0:
+				Coverage=Basen/length
+			if length == 0:
+				Coverage= 0
+				
+			Coverage_Wert9.append(Coverage)
+		
+		#	print(Coverage)
+			
+			#absStart=ChromosomeMetrics.GetAbsolutePosition(Chromosom, Start)
+			#absStop=ChromosomeMetrics.GetAbsolutePosition(Chromosom, Ende)
+		#	print(absStart)
+		#	print(absStop)
+		
+							
+			
+				
+		except ValueError:
+		#	print(line)
+			break
+
+
+Coverage_Wert10=[]
+
+with open("../Gliom/Gliom-Amplikons/G13-neu-Amplikons.bed") as f:
+	for line in f:
+		#print(line)
+		#print(line.split("\t"))
+		
+		splits = line.split("\t")
+		
+		#print(splits[0])
+		
+		try:
+			Chromosom =splits[0]
+			Start =int(splits[1])
+			Ende=int(splits[2])
+			Basen=float(splits[3])
+
+			length = Ende - Start
+			
+			if length != 0:
+				Coverage=Basen/length
+			if length == 0:
+				Coverage= 0
+				
+			Coverage_Wert10.append(Coverage)
+		
+		#	print(Coverage)
+			
+			#absStart=ChromosomeMetrics.GetAbsolutePosition(Chromosom, Start)
+			#absStop=ChromosomeMetrics.GetAbsolutePosition(Chromosom, Ende)
+		#	print(absStart)
+		#	print(absStop)
+		
+							
+			
+				
+		except ValueError:
+		#	print(line)
+			break
+
+
+Coverage_Wert11=[]
+
+with open("../Gliom/Gliom-Amplikons/G20-Amplikons.bed") as f:
+	for line in f:
+		#print(line)
+		#print(line.split("\t"))
+		
+		splits = line.split("\t")
+		
+		#print(splits[0])
+		
+		try:
+			Chromosom =splits[0]
+			Start =int(splits[1])
+			Ende=int(splits[2])
+			Basen=float(splits[3])
+
+			length = Ende - Start
+			
+			if length != 0:
+				Coverage=Basen/length
+			if length == 0:
+				Coverage= 0
+				
+			Coverage_Wert11.append(Coverage)
+		
+		#	print(Coverage)
+			
+			#absStart=ChromosomeMetrics.GetAbsolutePosition(Chromosom, Start)
+			#absStop=ChromosomeMetrics.GetAbsolutePosition(Chromosom, Ende)
+		#	print(absStart)
+		#	print(absStop)
+		
+							
+			
+				
+		except ValueError:
+		#	print(line)
+			break
+			
+Coverage_Wert12=[]
+
+with open("../Gliom/Gliom-Amplikons/Gliom_10-Amplikons.bed") as f:
+	for line in f:
+		#print(line)
+		#print(line.split("\t"))
+		
+		splits = line.split("\t")
+		
+		#print(splits[0])
+		
+		try:
+			Chromosom =splits[0]
+			Start =int(splits[1])
+			Ende=int(splits[2])
+			Basen=float(splits[3])
+
+			length = Ende - Start
+			
+			if length != 0:
+				Coverage=Basen/length
+			if length == 0:
+				Coverage= 0
+				
+			Coverage_Wert12.append(Coverage)
+		
+		#	print(Coverage)
+			
+			#absStart=ChromosomeMetrics.GetAbsolutePosition(Chromosom, Start)
+			#absStop=ChromosomeMetrics.GetAbsolutePosition(Chromosom, Ende)
+		#	print(absStart)
+		#	print(absStop)
+		
+							
+			
+				
+		except ValueError:
+		#	print(line)
+			break
+			
+			
+Coverage_Wert13=[]
+
+with open("../Gliom/Gliom-Amplikons/Gliom_9-Amplikons.bed") as f:
+	for line in f:
+		#print(line)
+		#print(line.split("\t"))
+		
+		splits = line.split("\t")
+		
+		#print(splits[0])
+		
+		try:
+			Chromosom =splits[0]
+			Start =int(splits[1])
+			Ende=int(splits[2])
+			Basen=float(splits[3])
+
+			length = Ende - Start
+			
+			if length != 0:
+				Coverage=Basen/length
+			if length == 0:
+				Coverage= 0
+				
+			Coverage_Wert13.append(Coverage)
+		
+		#	print(Coverage)
+			
+			#absStart=ChromosomeMetrics.GetAbsolutePosition(Chromosom, Start)
+			#absStop=ChromosomeMetrics.GetAbsolutePosition(Chromosom, Ende)
+		#	print(absStart)
+		#	print(absStop)
+		
+							
+			
+				
+		except ValueError:
+		#	print(line)
+			break
+			
+			
+Coverage_Wert14=[]
+
+with open("../Gliom/Gliom-Amplikons/Gliom_2-Amplikons.bed") as f:
+	for line in f:
+		#print(line)
+		#print(line.split("\t"))
+		
+		splits = line.split("\t")
+		
+		#print(splits[0])
+		
+		try:
+			Chromosom =splits[0]
+			Start =int(splits[1])
+			Ende=int(splits[2])
+			Basen=float(splits[3])
+
+			length = Ende - Start
+			
+			if length != 0:
+				Coverage=Basen/length
+			if length == 0:
+				Coverage= 0
+				
+			Coverage_Wert14.append(Coverage)
+		
+		#	print(Coverage)
+			
+			#absStart=ChromosomeMetrics.GetAbsolutePosition(Chromosom, Start)
+			#absStop=ChromosomeMetrics.GetAbsolutePosition(Chromosom, Ende)
+		#	print(absStart)
+		#	print(absStop)
+		
+							
+			
+				
+		except ValueError:
+		#	print(line)
+			break
+			
+			
+Coverage_Wert15=[]
+
+with open("../Gliom/Gliom-Amplikons/Gliom_15-Amplikons.bed") as f:
+	for line in f:
+		#print(line)
+		#print(line.split("\t"))
+		
+		splits = line.split("\t")
+		
+		#print(splits[0])
+		
+		try:
+			Chromosom =splits[0]
+			Start =int(splits[1])
+			Ende=int(splits[2])
+			Basen=float(splits[3])
+
+			length = Ende - Start
+			
+			if length != 0:
+				Coverage=Basen/length
+			if length == 0:
+				Coverage= 0
+				
+			Coverage_Wert15.append(Coverage)
+		
+		#	print(Coverage)
+			
+			#absStart=ChromosomeMetrics.GetAbsolutePosition(Chromosom, Start)
+			#absStop=ChromosomeMetrics.GetAbsolutePosition(Chromosom, Ende)
+		#	print(absStart)
+		#	print(absStop)
+		
+							
+			
+				
+		except ValueError:
+		#	print(line)
+			break
+
+
+x_axis_labels= (Gene)
+y_axis_labels=["G-PK", "G-LE", "G-MK", "G-SD", "G-MB", "G-AS", "G-LI", "G-GC", "G-ES", "G-EO", "G-CB", "G-NS", "G-KS", "G-HA", "G-BS"]
+data =[Coverage_Wert1, Coverage_Wert2, Coverage_Wert3, Coverage_Wert4, Coverage_Wert5, Coverage_Wert6, Coverage_Wert7, Coverage_Wert8, Coverage_Wert9, Coverage_Wert10, Coverage_Wert11, Coverage_Wert12, Coverage_Wert13, Coverage_Wert14, Coverage_Wert15]
+
+ax =sns.heatmap(data, xticklabels=Gene, yticklabels=y_axis_labels, vmin=0, vmax= 250, cmap="RdYlGn")
+ax.xaxis.set_ticks_position("top")
+plt.show()
