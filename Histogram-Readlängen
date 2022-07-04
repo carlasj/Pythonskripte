@@ -1,0 +1,59 @@
+import matplotlib.pyplot as plt
+import numpy as np
+import Plotting_Methods
+
+
+ax1 = plt.subplot(2, 2, 1)
+ax2 = plt.subplot(2, 2, 2)
+#ax3 = plt.subplot(2, 4, 3)
+#ax4 = plt.subplot(2, 4, 4)
+#ax5 = plt.subplot(2, 4, 5)
+#ax6 = plt.subplot(2, 4, 6)
+#ax7 = plt.subplot(2, 4, 7)
+
+
+
+def Histogramm(array, ax, txt_file, name):
+	
+	array = []
+	for line in open(txt_file):
+	
+		int(line)
+
+
+		array.append(int(line))
+	
+	#gaussian_numbers = np.random.normal(size=10000)
+	ax.hist(array, color="b", bins=1000 )
+	ax.set_ylabel("Häufigkeit")
+	ax.set_title(name)
+	ax.set_ylabel("Häufigkeit")
+	ax.set_xlabel("Readlänge")
+	ax.set_xlim(-100, 25000)
+	ax.set_ylim(0, 1000000)
+	
+	
+#Histogramm("/vol/mf-tumor/Run00661.Run00662.Run01038-readslenght.txt")
+Histogramm("array2", ax2, "/vol/mf-tumor/Run00661.Run00662.Run01038-readslenght.txt", "RNA")
+Histogramm("array3", ax1, "/vol/mf-tumor/WGS_Test_Mapping/CTCL-readlength.txt", "DNA")
+#Histogramm("array4", ax4, "/vol/mf-tumor/Run790-readslenght.txt", "Run790")
+#Histogramm("array5", ax5, "/vol/mf-tumor/Run791-readslenght.txt", "Run791")
+#Histogramm("array6", ax6, "/vol/mf-tumor/Run793-readslenght.txt", "Run793")
+#Histogramm("array7", ax7, "/vol/mf-tumor/Run876-readslenght.txt", "Run876")
+#plt.title("Readlänge")
+#plt.plot([-1, -1], [7, 7], c="b", label="N50: 436")
+#plt.plot([-1, -1], [7, 7], c="b", label="passed Based: 2,33 Gb")
+#plt.legend()
+
+#ax1.set_ylabel("Häufigkeit")
+#ax5.set_ylabel("Häufigkeit")
+
+
+#ax2.set_xlim(-100, 4000)
+#ax2.set_ylim(0, 4000000)
+
+#ax1.set_xlim(-100, 25000)
+#ax1.set_ylim(0, 700000)
+plt.show()
+
+    
