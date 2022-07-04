@@ -1,0 +1,101 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+
+def Bisulfitauswertung2 (Run_name):
+	i=0
+	Anzahl_methylierter_CpGs=0
+	Anzahl_CpGs=0
+
+	result_file = open("/vol/mf-tumor/Gliom/MGMT_Promotor/Bisulfit-" + Run_name + "-Coverage.seg", "w")
+	result_file.write("SAMPLE\tCHR\tSTART\tSTOP\tVALUE\n")
+
+	result_file2 = open("/vol/mf-tumor/Gliom/MGMT_Promotor/Bisulfit-"+ Run_name + "-Anteil_Methylierung.seg", "w")
+	result_file2.write("SAMPLE\tCHR\tSTART\tSTOP\tVALUE\n")
+
+	result_file3 = open("/vol/mf-tumor/Gliom/MGMT_Promotor/Bisulfit-" + Run_name +" -Klassifizierung_Methylierung.seg", "w")
+	result_file3.write("SAMPLE\tCHR\tSTART\tSTOP\tVALUE\n")
+	
+	i=0
+	Anzahl_methylierter_CpGs=0
+	Anzahl_CpGs=0
+	
+	for line in open("/vol/mf-tumor/Gliom/MGMT_Promotor/" +Run_name +"-Pileup.vcf"):
+	
+		if i%2==0 or i==0:
+			splits = line.split("\t")
+		#print(splits[4])
+			x=splits[4]
+			Coverage=splits[3]
+			if int(Coverage)>=50:
+				M=x.count("C")
+				M2=x.count("c")
+			#print(int(M)+int(M2))
+				G=(int(M))+(int(M2))
+				Anteil=int(G)/float(Coverage)
+				#print(i)
+				Anzahl_CpGs+=1
+				if Anteil>=0.2:
+					Anzahl_methylierter_CpGs+=1
+					result_file3.write(Run_name+"\t"+splits[0]+"\t"+str(int(splits[1])-1)+"\t"+splits[1]+"\t1\n")
+				else:
+					
+					result_file3.write(Run_name+"\t"+splits[0]+"\t"+str(int(splits[1])-1)+"\t"+splits[1]+"\t0\n")
+				
+				result_file.write(Run_name+"\t"+splits[0]+"\t"+str(int(splits[1])-1)+"\t"+splits[1]+"\t"+str(Coverage)+"\n")
+				result_file2.write(Run_name+"\t"+splits[0]+"\t"+str(int(splits[1])-1)+"\t"+splits[1]+"\t"+str(Anteil)+"\n")
+		i+=1
+#print("Anzahl methylierter CpGs: "+str(Anzahl_methylierter_CpGs))
+#print("Anzahl CpGs: "+str(Anzahl_CpGs))
+	if int(Anzahl_CpGs) != 0:
+		print(str(Run_name) + "Anteil methylierter CpGs: "+str(Anzahl_methylierter_CpGs/Anzahl_CpGs))
+
+array=[]
+def Bisulfitauswertung (Run_name):
+	
+	i=0
+	Anzahl_methylierter_CpGs=0
+	Anzahl_CpGs=0
+	Nummer1=[]
+	
+	for line in open ("/vol/mf-tumor/Gliom/MGMT_Promotor/"+ Run_name +"-Pileup.vcf"):
+	
+		if i%2==0 or i==0:
+			splits = line.split("\t")
+		#print(splits[4])
+			x=splits[4]
+			Coverage=splits[3]
+			if int(Coverage)>=50:
+				M=x.count("C")
+				M2=x.count("c")
+				#print(int(M)+int(M2))
+				G=(int(M))+(int(M2))
+				Anteil=int(G)/float(Coverage)
+				#print(i)
+				Anzahl_CpGs+=1
+				if Anteil >= 0.1:
+				
+					Nummer1.append(float(Anteil))
+				if Anteil>=0.2:
+					Anzahl_methylierter_CpGs+=1			
+					
+		i+=1
+
+	if Anzahl_CpGs !=0:
+		array.append((float(Anzahl_methylierter_CpGs)/float(Anzahl_CpGs)))
+		print(str(Run_name) + " Anteil methylierter CpGs: " + str(float(Anzahl_methylierter_CpGs)/float(Anzahl_CpGs)))
+		
+	
+
+xwerte =["G-FD-1", "G-FD-2", "G-FD-3", "G-FD-4"]
+Bisulfitauswertung("Run987-1")
+Bisulfitauswertung("Run987-2")
+Bisulfitauswertung("Run987-3")
+Bisulfitauswertung("Run935-5")
+
+plt.bar(xwerte, array, color=["r", "g", "b", "lime"])
+plt.ylim(0, 1)
+plt.ylabel("Anteil methylierter CpGs")
+plt.xlabel("Probe")
+plt.show()
+
