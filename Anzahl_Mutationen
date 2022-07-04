@@ -1,0 +1,13 @@
+import numpy as np
+
+	
+array2=[]
+for line in open ("/vol/mf-tumor/2022_02_WGS_LSK/WGS_LSK_7_Runs_GRCh38_minimap.Y.sniffles2.hq.vcf"):
+	
+	if not line.startswith("#"):
+	
+		splits = line.split("\t")
+		#print(splits[4])
+		if splits[4] == "<INV>":
+			array2.append(splits[4])
+print(len(array2))
