@@ -1,0 +1,151 @@
+import ChromosomeMetrics
+import matplotlib.pyplot as plt
+import Plotting_Methods
+import numpy as np
+
+
+"""
+x := Daten
+w := Schrittweite
+i := Index
+"""
+def moving_average(x, w, i):
+	if i>w:
+		start=i-w
+	else:
+		start=0
+	if i+w > len(x)-1:
+		end=len(x)-1+1
+	else:
+		end=i+w+1
+	
+	
+	data_for_moving_average = x[start:end]
+	mean = np.mean(data_for_moving_average)
+	std = np.std(data_for_moving_average)
+	"""
+	outlier_removed_data_for_moving_average = []
+	for d in data_for_moving_average:
+		if np.abs(d - mean) < 2 * std:
+			outlier_removed_data_for_moving_average.append(d)
+	"""
+	#return np.sum(x[start:end])/len(x[start:end])
+	#return np.mean(outlier_removed_data_for_moving_average)
+	
+	return mean, std
+
+def PlotBED (bed_file, axis, color, color2):
+	
+	chromosom = []
+	org_start = []
+	org_end = []
+	x_start = []
+	x_end = []
+	y = []
+	
+	
+	for line in open(bed_file):
+		
+		splits = line.split("\t")
+		
+		Chromosom = splits[0]
+		Start = int(splits[1])
+		Ende = int(splits[2])
+		Basen = float(splits[3])		
+		Coverage = Basen / (Ende - Start)
+		
+		absStart = ChromosomeMetrics.GetAbsolutePosition(Chromosom, Start)
+		absStop = ChromosomeMetrics.GetAbsolutePosition(Chromosom, Ende)
+		
+		chromosom.append(Chromosom)
+		org_start.append(Start)
+		org_end.append(Ende)
+		x_start.append(absStart)
+		x_end.append(absStop)		
+		y.append(Coverage)
+
+			
+	axis.scatter(x_start, y, c=color, s=0.5, alpha=0.02)
+	
+	average_y = []
+	
+	fil_avg_x = []
+	fil_avg_y = []
+
+	for i in range(len(x_start)):
+		
+		avg_mean, avg_std = moving_average(y, 200, i)
+		
+		average_y.append(avg_mean)
+		
+		if avg_std < 50:
+			fil_avg_x.append(x_start[i])
+			fil_avg_y.append(avg_mean)
+			
+		
+		print(chromosom[i].replace("chr", "hs") + "\t" + str(org_start[i]) + "\t" + str(org_end[i]) + "\t" + str(avg_mean) + "\n")
+			
+	
+	
+	#axis.plot(x_start, y, c=color)#, s=2)
+	axis.plot(x_start, average_y, c=color2)#, s=2)
+	
+	
+	
+
+	
+	
+	
+
+#ax1 = plt.subplot(311)
+#ax2 = plt.subplot(312)
+#ax3 = plt.subplot(313)
+fig, ax = plt.subplots()
+Plotting_Methods.HighlightEvenChromosomes(ax, 0, 25)
+#Plotting_Methods.HighlightEvenChromosomes(ax2, 0, 25)
+
+
+#Plotting_Methods.HighlightEvenChromosomes(ax2, 0, 25)
+
+#PlotBED("../Mappings/Run789_790_791_793-C053_CNV.bed", ax, "b")
+#PlotBED("../Gliom/wgs/Run990-1-hg38-chromosomband.bed", ax, "orange", "g")
+#PlotBED("../Gliom/wgs/Run990-2-hg38-chromosomband.bed", ax, "lime", "r")
+#PlotBED("../Gliom/wgs/Run990-3-hg38-chromosomband.bed", ax, "black", "purple")
+
+#PlotBED("../Gliom/wgs/Run990-2-10kB.bed", ax, "r", "g")
+#PlotBED("/vol/mf-tumor/2022_02_WGS_LSK/WGS_LSK_7_Runs_CRCh38_minimap-10kb-intervals.bed", ax, "r", "g")
+PlotBED("/vol/mf-tumor/2022_02_WGS_LSK/WGS_LSK_7_Runs_CRCh38_minimap-10kb-intervals.bed", ax, "r", "g")
+
+#PlotBED("../Gliom/wgs/Run990-1-10kB.bed", ax1, "r", "g")
+#PlotBED("../Gliom/wgs/Run990-2-10kB.bed", ax2, "lime", "g")
+#PlotBED("../Gliom/wgs/Run990-3-10kB.bed", ax3, "black", "g")
+#PlotBED("../WGS_Test_Mapping/Run713_714_789_790_791_793_876-ngmlr-hg38-chromosomband.bed", ax, "g")
+#PlotBED("../WGS_Test_Mapping/WGS.longread-hg38-chromosomband.bed", ax, "b")
+#PlotBED("../WGS_Test_Mapping/WGS.longread-wgs_1MB_intervals.bed", ax, "m")
+#PlotBED("../WGS_Test_Mapping/Run713_714_789_790_791_793_876-C053_CNV.bed", ax, "b")
+#PlotBED("../WGS_Test_Mapping/Run876-wgs_1MB_intervals.bed", ax, "k")
+#PlotBED("../Mappings/hg38-chromosomband-run393(2).bed", ax, "g")
+
+#plt.plot([-1, -2], [1, 2], c="r", label="G-BS")
+#ax2.plot([-1, -2], [1, 2], c="lime", label="G-LE")
+#ax3.plot([-1, -2], [1, 2], c="black", label="G-FD")
+
+#plt.plot([-1, -2], [7, 8], c="b", label="C053_CNV")
+
+#for ax in [ax1, ax2, ax3]:
+	#ax.set_ylabel("Coverage")
+	#ax.set_ylim(0, 30)
+	#ax.set_xlabel("Genom")
+	#ax.set_xlim(0, 3088269832)
+plt.ylabel("Coverage")
+plt.ylim(0, 25)
+plt.xlabel("Genom")
+plt.xlim(0, 3088269832)
+#plt.legend()
+#plt.title("Coverage C053")
+#for ax in [ax1, ax2]:
+#	ax.set_ylabel("Coverage")
+#	ax.set_ylim(0, 30)
+#	ax.set_xlabel("Genom")
+#	ax.set_xlim(0, 3088269832)
+plt.show()
