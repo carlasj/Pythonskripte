@@ -83,7 +83,7 @@ def PlotBED (bed_file, axis, color, color2):
 			fil_avg_y.append(avg_mean)
 			
 		
-		print(chromosom[i].replace("chr", "hs") + "\t" + str(org_start[i]) + "\t" + str(org_end[i]) + "\t" + str(avg_mean) + "\n")
+		#print(chromosom[i].replace("chr", "hs") + "\t" + str(org_start[i]) + "\t" + str(org_end[i]) + "\t" + str(avg_mean) + "\n")
 			
 	
 	
